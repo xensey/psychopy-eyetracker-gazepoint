@@ -5,8 +5,8 @@
 # Copyright (C) 2002-2018 Jonathan Peirce (C) 2019-2023 Open Science Tools Ltd.
 # Distributed under the terms of the GNU General Public License (GPL).
 
-"""Extension package for PsychoPy which adds support for various hardware
-devices by Gazepoint (https://www.gazept.com/).
+"""Extension package for PsychoPy which adds support for Pathfinder
+eyetrackers.
 """
 
-__version__ = "0.0.5"
+__version__ = "0.1.0"
