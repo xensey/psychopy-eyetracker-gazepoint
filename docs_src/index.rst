@@ -1,8 +1,8 @@
 =======================================================
-Welcome to psychopy-eyetracker-gazepoint's documentation!
+Welcome to psychopy-eyetracker-pathfinder's documentation!
 =======================================================
 
-The `psychopy-eyetracker-gazepoint` plugin is designed to show you how to make a plugin.
+The `psychopy-eyetracker-pathfinder` plugin is designed to show you how to make a plugin.
 
 .. toctree::
    :maxdepth: 1

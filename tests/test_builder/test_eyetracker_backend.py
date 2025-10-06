@@ -12,4 +12,4 @@ def test_eyetrackerBackendFound():
     # get the eyetrackers available from its Settings component
     backends = exp.settings.params['eyetracker'].allowedVals
     # make sure this eyetracker is found
-    assert 'GazePoint' in backends
+    assert 'Pathfinder' in backends

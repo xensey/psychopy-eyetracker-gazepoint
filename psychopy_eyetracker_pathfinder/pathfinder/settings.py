@@ -3,63 +3,61 @@ from psychopy.experiment import Param
 from psychopy.experiment.components.settings.eyetracking import EyetrackerBackend
 
 
-class GazePointEyetrackerBackend(EyetrackerBackend):
-    """Experiment settings for the GazePoint GP3 eyetracker.
-    """
-    label = 'GazePoint GP3 (iohub)'
-    key = 'eyetracker.hw.gazepoint.gp3.EyeTracker'
+class PathfinderEyetrackerBackend(EyetrackerBackend):
+    """Experiment settings for the Pathfinder eyetracker."""
+
+    label = 'Pathfinder (iohub)'
+    key = 'eyetracker.hw.pathfinder.api.EyeTracker'
 
     needsFullscreen = False
-    needsCalibration = False
+    needsCalibration = True
 
     @classmethod
     def getParams(cls):
         # define order
         order = [
             # network settings
-            "gpNetIP4Address",
-            "gpNetPort",
+            "pfNetIP4Address",
+            "pfNetPort",
             # runtime settings
-            "gpSamplingRate",
-            "gpTrackEyes"
+            "pfSamplingRate",
+            "pfTrackEyes"
         ]
 
-        # network settings
         params = {}
-        params['gpNetIP4Address'] = Param(
+        params['pfNetIP4Address'] = Param(
             "127.0.0.1",   # default value
-            valType='str', 
+            valType='str',
             inputType="single",
             hint=_translate("IP Address to connect to."),
-            label=_translate("IP4 Address"), 
-            categ="Eyetracking"
+            label=_translate("IP4 Address"),
+            categ="Eyetracking",
         )
-        params['gpNetPort'] = Param(
+        params['pfNetPort'] = Param(
             "4242",  # default value
-            valType='str', 
+            valType='str',
             inputType="single",
             hint=_translate("Port number to connect to."),
-            label=_translate("Port"), 
-            categ="Eyetracking"
+            label=_translate("Port"),
+            categ="Eyetracking",
         )
 
-        # runtime settings
-        params['gpSamplingRate'] = Param(
-            "60", 
-            valType='str', 
+        params['pfSamplingRate'] = Param(
+            "60",
+            valType='str',
             inputType="single",
             hint=_translate("Sampling rate in Hz."),
-            label=_translate("Sampling rate"), 
-            categ="Eyetracking"
+            label=_translate("Sampling rate"),
+            categ="Eyetracking",
         )
-        params['gpTrackEyes'] = Param(
-            'BINOCULAR', 
-            valType='str', 
+        params['pfTrackEyes'] = Param(
+            'BINOCULAR',
+            valType='str',
             inputType="choice",
             allowedVals=['BINOCULAR'],
             hint=_translate("Which eye(s) to track."),
-            label=_translate("Track eyes"), 
-            categ="Eyetracking"
+            label=_translate("Track eyes"),
+            categ="Eyetracking",
         )
 
         return params, order
@@ -70,12 +68,12 @@ class GazePointEyetrackerBackend(EyetrackerBackend):
             "ioConfig[%(eyetracker)s] = {\n"
             "    'name': 'tracker',\n"
             "    'network_settings': {\n"
-            "        'ip_address': %(gpNetIP4Address)s,\n"
-            "        'port': %(gpNetPort)s,\n"
+            "        'ip_address': %(pfNetIP4Address)r,\n"
+            "        'port': int(%(pfNetPort)s),\n"
             "    },\n"
             "    'runtime_settings': {\n"
-            "        'sampling_rate': %(gpSamplingRate)s,\n"
-            "        'track_eyes': %(gpTrackEyes)s,\n"
+            "        'sampling_rate': int(%(pfSamplingRate)s),\n"
+            "        'track_eyes': %(pfTrackEyes)r,\n"
             "    },\n"
             "}\n"
         )

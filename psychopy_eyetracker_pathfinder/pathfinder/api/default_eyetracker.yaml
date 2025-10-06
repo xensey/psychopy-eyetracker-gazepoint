@@ -1,4 +1,4 @@
-eyetracker.gazepoint.gp3.EyeTracker:
+eyetracker.hw.pathfinder.api.EyeTracker:
     # Indicates if the device should actually be loaded at experiment runtime.
     enable: True
 
@@ -20,49 +20,32 @@ eyetracker.gazepoint.gp3.EyeTracker:
     # the maximum event length of the buffer defined here, older events will start to be dropped.
     event_buffer_length: 1024
 
-    # The GP3 implementation of the common eye tracker interface supports the
+    # The Pathfinder implementation of the common eye tracker interface supports the
     # BinocularEyeSampleEvent event type.
-    monitor_event_types: [ GazepointSampleEvent, FixationStartEvent, FixationEndEvent]
+    monitor_event_types: [ PathfinderSampleEvent ]
 
     runtime_settings:
         sampling_rate: Auto
         track_eyes: [BINOCULAR,]
 
-    # device_timer: The GP3 EyeTracker class uses the polling method to
-    #   check for new events received from the EyeTracker device. 
+    # device_timer: The Pathfinder EyeTracker class uses the polling method to
+    #   check for new events received from the EyeTracker device.
     #   device_timer.interval specifies the sec.msec time between device polls.
-    #   0.005 = 5 msec, so the device will be polled at a rate of 200 Hz. 
+    #   0.005 = 5 msec, so the device will be polled at a rate of 200 Hz.
     device_timer:
         interval: 0.005
 
-    # Specify the IP address and port that iohub should use to connect to the GP3 tracker.
+    # Specify the IP address and port that iohub should use to connect to the Pathfinder tracker.
     # Default values are for localhost connection (single PC setup).
     network_settings:
-        ip_address: 127.0.0.1            
+        ip_address: 127.0.0.1
         port: 4242
-   
+
     calibration:
-        # True: Use GazePoint Control app calibration window.
+        # True: Use Pathfinder Control app calibration window.
         # False: Use custom calibration graphics.
         use_builtin: False
 
-        # auto_pace: Ggazepoint only supports auto pacing,so it automatically progresses from
-        # one calibration point to the next.
-        #
-        auto_pace: True
-
-        # target_duration is the number of sec.msec that a calibration point should
-        # be displayed before moving onto the next point. Target size expansion / contraction
-        # optionally occurs during this time period as well.
-        # (Sets the GP3 CALIBRATE_TIMEOUT)
-        target_duration: 1.5
-
-        # target_delay specifies the time between target position presentations. Target position animation
-        # optionally occurs during this time period as well.
-        # (Sets the GP3 CALIBRATE_DELAY)
-        target_delay: 0.75
-
-        #
         # Remaining calibration settings are only used if 'use_builtin' == False
         #
         # Number of calibration points to present.
@@ -119,30 +102,6 @@ eyetracker.gazepoint.gp3.EyeTracker:
 
              # 'animate' controls target movement and expansion / contraction (if any).
              animate:
-                 # enable: True if the calibration target should be animated between target positions.
-                 # False specifies that the calibration targets could just jump from one calibration point to another.
                  enable: True
-
-                 # expansion_ratio: If > 1.0, expansion_ratio specifies the maximum target
-                 # outer diameter size as outer_diameter * expansion_ratio.
-                 expansion_ratio: 1.25
-
-                 # contract_only: If True, only contract outer target circle into inner target circle;
-                 # expansion_ratio is ignored. If False, expand and then contract target using expansion_ratio setting.
+                 expansion_ratio: 2.0
                  contract_only: False
-
-    # The model name of the device.
-    model_name: GP3
-
-    # manufacturer_name: Used by Builder as the displayed name in the eye tracker selection dropdown.
-    #
-    manufacturer_name: GazePoint
-    
-    # Do not change this value.
-    auto_report_events: False
-    
-    # The below parameters are not used by the GP3 common eye tracker
-    # interface implementation. They can be ignored an left out of your
-    # device configuration, or you can complete any ones that are relevant for FYI
-    # purposes only at this time.
-    device_number: 0
