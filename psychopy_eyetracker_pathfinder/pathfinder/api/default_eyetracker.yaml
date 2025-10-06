@@ -6,6 +6,7 @@ eyetracker.hw.pathfinder.api.EyeTracker:
     # during experiment run-time, via the devices.[name] attribute of the ioHub
     # connection or experiment runtime class.
     name: tracker
+    device_number: 0
 
     # Should eye tracker events be saved to the ioHub DataStore file when the device
     # is recording data ?
